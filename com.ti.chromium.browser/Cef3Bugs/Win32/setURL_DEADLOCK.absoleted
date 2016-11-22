@@ -1,0 +1,33 @@
+Chromium setURL DEADLOCK fix
+
+Undo CefBrowser.cpp and call setURL directly without using the workaround.
+
+modified browser_host_impl.cc::GetOrCreateFrame(...)
+replaced base::AutoLock lock_scope(state_lock_) with explicit Acquire() and Release() calls.
+
+...
+
+  // TI_FIX [pchuong]
+  //base::AutoLock lock_scope(state_lock_);
+  state_lock_.Acquire();
+
+  if (is_main_frame)
+    main_frame_id_ = frame_id;
+
+  CefRefPtr<CefFrameHostImpl> frame;
+
+  // Check if a frame object already exists.
+  FrameMap::const_iterator it = frames_.find(frame_id);
+  if (it != frames_.end())
+    frame = it->second.get();
+
+  if (!frame.get()) {
+    // Create a new frame object.
+    frame = new CefFrameHostImpl(this, frame_id, is_main_frame);
+    frames_.insert(std::make_pair(frame_id, frame));
+  }
+
+  // TI_FIX [pchuong]
+  state_lock_.Release();
+
+...

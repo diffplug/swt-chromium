@@ -1,0 +1,6 @@
+/chromium/src/base/message_pump_gtk.cc 
+
+MessagePumpGtk::MessagePumpGtk() : MessagePumpGlib() {
+// TI_FIX [pchuong] - This is conflicting with eclipse's context menu
+//  gdk_event_handler_set(&EventDispatcher, this, NULL);
+}

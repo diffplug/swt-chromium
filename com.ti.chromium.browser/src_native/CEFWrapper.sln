@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CEFBridge", "CEFBridge\CEFBridge.vcxproj", "{DF81EEB8-43DE-4872-AEB1-8FC39F3AFCD1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CEFSubProcess", "CEFSubProcess\CEFSubProcess.vcxproj", "{0551AEA1-751A-4033-AA04-E61C90F2E43E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF81EEB8-43DE-4872-AEB1-8FC39F3AFCD1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DF81EEB8-43DE-4872-AEB1-8FC39F3AFCD1}.Debug|Win32.Build.0 = Debug|Win32
+		{DF81EEB8-43DE-4872-AEB1-8FC39F3AFCD1}.Release|Win32.ActiveCfg = Release|Win32
+		{DF81EEB8-43DE-4872-AEB1-8FC39F3AFCD1}.Release|Win32.Build.0 = Release|Win32
+		{0551AEA1-751A-4033-AA04-E61C90F2E43E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0551AEA1-751A-4033-AA04-E61C90F2E43E}.Debug|Win32.Build.0 = Debug|Win32
+		{0551AEA1-751A-4033-AA04-E61C90F2E43E}.Release|Win32.ActiveCfg = Release|Win32
+		{0551AEA1-751A-4033-AA04-E61C90F2E43E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

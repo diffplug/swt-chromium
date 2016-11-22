@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <WIN_SDK_DIR>C:\Program Files (x86)\Windows Kits\8.0</WIN_SDK_DIR>
+    <JDK_DIR_x86>C:\Program Files (x86)\Java\jdk1.6.0_37</JDK_DIR_x86>
+    <JDK_DIR_amd64 />
+    <CEF_DIR_x86>C:\snapshots\a0792182_CCS.head\ccs_eclipse\ti_plugins\com.ti.chromium.browser.win32.win32.x86\src_native\CEF</CEF_DIR_x86>
+    <CEF_DIR_amd64 />
+    <CEF_LIB_DIR_x86>C:\snapshots\a0792182_CCS.head\ccs_eclipse\ti_plugins\com.ti.chromium.browser.win32.win32.x86\src_native\CEF\lib</CEF_LIB_DIR_x86>
+    <CEF_LIB_DIR_amd64 />
+    <OUTPUT_DIR_x86>C:\snapshots\a0792182_CCS.head\ccs_eclipse\ti_plugins\com.ti.chromium.browser.win32.win32.x86\libs</OUTPUT_DIR_x86>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="WIN_SDK_DIR">
+      <Value>$(WIN_SDK_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JDK_DIR_x86">
+      <Value>$(JDK_DIR_x86)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JDK_DIR_amd64">
+      <Value>$(JDK_DIR_amd64)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CEF_DIR_x86">
+      <Value>$(CEF_DIR_x86)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CEF_DIR_amd64">
+      <Value>$(CEF_DIR_amd64)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CEF_LIB_DIR_x86">
+      <Value>$(CEF_LIB_DIR_x86)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CEF_LIB_DIR_amd64">
+      <Value>$(CEF_LIB_DIR_amd64)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OUTPUT_DIR_x86">
+      <Value>$(OUTPUT_DIR_x86)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

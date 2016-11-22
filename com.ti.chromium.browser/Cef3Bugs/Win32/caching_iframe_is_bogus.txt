@@ -1,0 +1,9 @@
+Sometimes Maqetta preview is not showing the correct file. 
+Looks like it is a chromium caching issue. 
+I patched it on the server side GuiComposerWebServer : "Cache-Control", "no-cache".
+ 
+When Patrick posted a request the Chromium guy confirmed that there is such bug: 
+https://code.google.com/p/chromium/issues/detail?id=260130
+  
+After we update we need to check if it has been fixed, and if so, I'll remove the server hack.
+

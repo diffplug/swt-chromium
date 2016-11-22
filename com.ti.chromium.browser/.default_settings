@@ -1,0 +1,48 @@
+{
+	/*
+	 * The location where cache data will be stored on disk. If empty an in-memory
+	 * cache will be used. HTML5 databases such as localStorage will only persist
+  	 * across sessions if a cache path is specified.
+  	 */
+	"cache_path": null,
+	
+	/*
+	 * Value that will be returned as the User-Agent HTTP header. If empty the
+  	 * default User-Agent string will be used.
+  	 */
+	"user_agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.110 Safari/537.36 TIBrowser/1.0",
+	
+	/*
+	 * Value that will be inserted as the product portion of the default
+  	 * User-Agent string. If empty the Chromium product version will be used. If
+  	 * |userAgent| is specified this value will be ignored.
+  	 */
+  	 "product_version": null,
+	
+	/* The locale string that will be passed to WebKit. If empty the default
+  	 * locale of "en-US" will be used. This value is ignored on Linux where locale
+  	 * is determined using environment variable parsing with the precedence order:
+  	 * LANGUAGE, LC_ALL, LC_MESSAGES and LANG.
+  	 */
+	"locale": null,
+	
+	/*
+  	 * Set to a value between 1024 and 65535 to enable remote debugging on the
+  	 * specified port. For example, if 8080 is specified the remote debugging URL
+  	 * will be http://localhost:8080. CEF can be remotely debugged from any CEF or
+  	 * Chrome browser window.
+  	 */
+	"remote_debugging_port": null,
+
+	/*
+	 * Logging severity levels.
+	 * 		0 = default
+	 * 		1 = verbose
+	 *		2 = info
+	 *		3 = warning
+	 * 		4 = error
+	 *		5 = error_report
+	 *		99 = disable
+	 */
+	"log_severity": 5
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="com.ti.chromium.browser" version="2">
+    <resource path="src/com/ti/chromium/browser/ChromiumBrowser.java" type="com.ti.chromium.browser.ChromiumBrowser">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="CefBrowser"/>
+                <message_argument value="ChromiumBrowser"/>
+                <message_argument value="ChromiumBrowser(CefBrowser)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/ti/chromium/browser/internal/cef/N_KeyboardListener.java" type="com.ti.chromium.browser.internal.cef.N_KeyboardListener">
+        <filter id="623939596">
+            <message_arguments>
+                <message_argument value="Control"/>
+                <message_argument value="N_KeyboardListener"/>
+                <message_argument value="handle"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

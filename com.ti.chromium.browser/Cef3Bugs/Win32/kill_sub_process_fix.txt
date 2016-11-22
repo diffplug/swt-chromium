@@ -1,0 +1,23 @@
+\src\content\common\sandbox_win.cc
+
+// TI_FIX [pchuong] - declare global variable
+static HANDLE ghJob = NULL;
+
+base::ProcessHandle StartSandboxedProcess(...) {
+
+...
+	// TI_FIX [pchuong]
+    //base::LaunchProcess(*cmd_line, base::LaunchOptions(), &process);
+	base::LaunchOptions options = base::LaunchOptions();
+	if (ghJob == NULL) {
+		ghJob = CreateJobObject(NULL, NULL); // GLOBAL
+		base::SetJobObjectAsKillOnJobClose(ghJob);
+	}
+	options.job_handle = ghJob;
+	base::LaunchProcess(*cmd_line, options, &process);
+	// TI_FIX
+...
+
+}
+
+

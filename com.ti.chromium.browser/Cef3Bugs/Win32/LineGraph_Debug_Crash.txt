@@ -1,0 +1,3 @@
+\src\third_party\webkit\source\webcore\css\csscomputedstyledeclaration.cpp
+
+comment out logUnimplementedPropertyID(propertyID); call at line 2869, not the actual function.

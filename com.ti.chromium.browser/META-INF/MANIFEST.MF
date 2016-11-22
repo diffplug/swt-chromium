@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Chromium Browser
+Bundle-SymbolicName: com.ti.chromium.browser;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.ti.chromium.browser.CEFBrowserPlugin
+Bundle-Vendor: Texas Instruments
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.json
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.ti.chromium.browser,
+ com.ti.chromium.browser.cef;x-internal:=true,
+ com.ti.chromium.browser.internal.cef;x-internal:=true,
+ com.ti.chromium.browser.views;x-internal:=true

@@ -1,0 +1,2 @@
+To prevent crashes on linux, comment out the function body for BreakDebugger(), 
+in the src/base/debug/debugger_posix.cc file.
