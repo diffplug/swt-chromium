@@ -1,0 +1,9 @@
+# mac stuff
+*.DS_Store
+
+# gradle stuff
+build/
+.gradle/
+
+# eclipse stuff
+bin/

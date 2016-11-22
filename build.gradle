@@ -1,0 +1,40 @@
+plugins {
+	id 'com.diffplug.gradle.oomph.ide' version '3.4.0'
+	id 'com.diffplug.gradle.eclipse.resourcefilters' version '3.4.0'
+}
+
+// setup the IDE
+oomphIde {
+	eclipseIni {
+		vmargs('-Xmx2g')	// IDE can have up to 2 gigs of RAM
+	}
+	style {
+		classicTheme()	// oldschool cool
+		niceText()		// with nice fonts and visible whitespace
+	}
+
+	// setup the jdt and pde
+	repoEclipseLatest()
+	pde {}
+
+	// setup the cdt
+	repo 'http://download.eclipse.org/tools/cdt/releases/9.1'
+	feature 'org.eclipse.cdt.platform'
+
+	// add syntax highlighting for gradle scripts
+	repo 'http://www.nodeclipse.org/updates/gradle-ide-pack/'
+	feature 'org.nodeclipse.enide.editors.gradle.feature'
+
+	// add these projects
+	addProjectFolder('.')
+	addProjectFolder('org.json')
+	addProjectFolder('com.ti.chromium.browser')
+	addProjectFolder('com.ti.chromium.browser.gtk.linux.x86')
+	addProjectFolder('com.ti.chromium.browser.win32.win32.x86')
+}
+
+// setup the root folder
+eclipseResourceFilters {
+	exclude().folders().name('com.ti.*')
+	exclude().folders().name('org.json*')
+}
