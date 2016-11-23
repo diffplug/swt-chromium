@@ -1,11 +1,13 @@
-apply plugin: 'java'
+apply from: '../gradle/loadProps.gradle'
 
 repositories {
 	mavenCentral()
 }
 
-dependencies {
-	compile 'com.diffplug.durian:durian-swt:2.0.0'
-}
-
+apply plugin: 'java'
 apply plugin: 'eclipse'
+
+dependencies {
+	compile "com.diffplug.gradle:goomph:${VER_GOOMPH}"
+	compile "de.undercouch:gradle-download-task:${VER_DOWNLOAD}"
+}

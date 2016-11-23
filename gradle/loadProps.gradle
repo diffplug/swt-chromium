@@ -1,0 +1,9 @@
+// load the properties for buildSrc
+Properties properties = new Properties()
+FileInputStream input = new FileInputStream(file('../gradle.properties'))
+properties.load(input)
+input.close()
+
+for (String key : properties.stringPropertyNames()) {
+	ext.set(key, properties.getProperty(key))
+}
