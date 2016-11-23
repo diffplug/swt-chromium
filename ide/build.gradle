@@ -1,0 +1,30 @@
+apply plugin: 'com.diffplug.gradle.oomph.ide'
+oomphIde {
+	splash rootProject.file('_images/logo_256.png')
+	eclipseIni {
+		vmargs('-Xmx2g')	// IDE can have up to 2 gigs of RAM
+	}
+	style {
+		classicTheme()	// oldschool cool
+		niceText()		// with nice fonts and visible whitespace
+	}
+
+	// setup the jdt
+	repoEclipseLatest()
+	pde {
+		targetplatform {
+			it.installation rootProject.file('build/p2asmaven/p2/p2swt')
+		}
+	}
+
+	// setup the cdt
+	repo 'http://download.eclipse.org/tools/cdt/releases/9.1'
+	feature 'org.eclipse.cdt.platform'
+
+	// add syntax highlighting for gradle scripts
+	repo 'http://www.nodeclipse.org/updates/gradle-ide-pack/'
+	feature 'org.nodeclipse.enide.editors.gradle.feature'
+
+	// add these projects
+	addAllProjects()
+}

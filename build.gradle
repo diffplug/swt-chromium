@@ -1,0 +1,53 @@
+buildscript {
+	repositories { mavenCentral() }
+	dependencies {
+		classpath "com.diffplug.gradle:goomph:${VER_GOOMPH}"
+	}
+}
+
+import com.diffplug.common.swt.os.SwtPlatform
+
+// download the SWT binaries that we're based on
+apply plugin: 'com.diffplug.gradle.p2.asmaven'
+p2AsMaven {
+	group 'p2swt', {
+		repoEclipse VER_SWT
+		iu 'org.eclipse.swt'
+	}
+}
+
+// setup the aggregator lib
+project(':org.eclipse.swt.chromium') {
+	apply from: rootProject.file('gradle/libSetup.gradle')
+	dependencies {
+		provided project(":org.eclipse.swt.chromium.${SwtPlatform.getNative()}")
+
+		testCompile "junit:junit:${VER_JUNIT}"
+		testCompile "org.assertj:assertj-core:${VER_ASSERTJ}"
+	}
+}
+// setup each platform-specific lib
+configure(subprojects.findAll {it.name.startsWith('org.eclipse.swt.chromium.')} ) {
+	apply from: rootProject.file('gradle/libSetup.gradle')
+
+	// add the SWT dependencies
+	String platformCode = project.name.substring('org.eclipse.swt.chromium.'.length())
+	dependencies {
+		provided "p2swt:org.eclipse.swt:+"
+		provided "p2swt:org.eclipse.swt.${platformCode}:+"
+	}
+
+	// platform-specific libs should be fragments
+	SwtPlatform parsedPlatform = SwtPlatform.parseWsOsArch(platformCode)
+	jar.manifest.attributes (
+		'Fragment-Host': 'org.eclipse.swt.chromium',
+		'Eclipse-PlatformFilter': parsedPlatform.platformFilter(),
+	)
+}
+
+// setup the root eclipse project
+apply plugin: 'com.diffplug.gradle.eclipse.resourcefilters'
+eclipseResourceFilters {
+	exclude().folders().name('org.eclipse.*')
+	exclude().folders().name('buildSrc')
+}

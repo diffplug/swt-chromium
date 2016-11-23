@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+	mavenCentral()
+	maven {
+		url rootProject.file('build/p2asmaven/maven')
+	}
+}
+
+configurations {
+	provided
+	compile.extendsFrom provided
+}
+
+// setup the OSGi manifest
+apply plugin: 'com.diffplug.gradle.osgi.bndmanifest'
+osgiBndManifest {
+	copyTo 'META-INF/MANIFEST.MF'
+}
+jar.manifest.attributes(
+	'-exportcontents': 'org.eclipse.*',
+	'-removeheaders': 'Bnd-LastModified,Bundle-Name,Created-By,Tool,Private-Package',
+	'Import-Package': '!javax.annotation.*,*',
+	'Bundle-ActivationPolicy': 'lazy',
+	'Bundle-License': "http://www.apache.org/licenses/LICENSE-2.0",
+	'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.8',
+	'Bundle-SymbolicName': "${project.name};singleton:=true",
+	'Bundle-Vendor': 'DiffPlug',
+	'Require-Capability': 'osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"',
+	'-nodefaultversion': 'true'
+)
+
+// exclude the build folder from eclipse projects
+apply plugin: 'com.diffplug.gradle.eclipse.resourcefilters'
+eclipseResourceFilters {
+	exclude().folders().name('build')
+}

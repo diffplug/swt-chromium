@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ActivationPolicy: lazy
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: org.eclipse.swt.chromium.cocoa.macosx.x86_64;sing
+ leton:=true
+Bundle-Vendor: DiffPlug
+Bundle-Version: 1.0.0.I201611231438
+Eclipse-PlatformFilter: (& (osgi.ws=cocoa) (osgi.os=macosx) (osgi.arch
+ =x86_64) )
+Fragment-Host: org.eclipse.swt.chromium
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
