@@ -4,10 +4,12 @@ repositories {
 	mavenCentral()
 }
 
-apply plugin: 'java'
+apply plugin: 'java-gradle-plugin'
 apply plugin: 'eclipse'
 
 dependencies {
 	compile "com.diffplug.gradle:goomph:${VER_GOOMPH}"
 	compile "de.undercouch:gradle-download-task:${VER_DOWNLOAD}"
+	testCompile "junit:junit:${VER_JUNIT}"
+	testCompile "org.assertj:assertj-core:${VER_ASSERTJ}"
 }

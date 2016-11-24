@@ -7,12 +7,27 @@ buildscript {
 
 import com.diffplug.common.swt.os.SwtPlatform
 
+// The CEF binaries are pretty big, well over a gig for all
+// five platforms after they've been extracted.  By default,
+// only the platform for the currently running platform will
+// be downloaded.
+//
+// If you want all platforms, add this to the command line: -Pplatforms=all
+// If you want specific platfroms, add this to the command line: -Pplatforms=win32.win32.x86,win32.win32.x86_64
+// If you just want the currently running platform, no command line arguments are needed
+
+// parse the 'platforms' arg
+ext.activePlatforms = buildhelper.CEF.parsePlatformsArg(findProperty('platforms'))
+
 // download the SWT binaries that we're based on
 apply plugin: 'com.diffplug.gradle.p2.asmaven'
 p2AsMaven {
 	group 'p2swt', {
 		repoEclipse VER_SWT
-		iu 'org.eclipse.swt'
+		for (SwtPlatform platform : SwtPlatform.getAll()) {
+			iu "org.eclipse.swt.${platform}"
+			iu "org.eclipse.swt.${platform}.source"
+		}
 	}
 }
 
@@ -26,23 +41,28 @@ project(':org.eclipse.swt.chromium') {
 		testCompile "org.assertj:assertj-core:${VER_ASSERTJ}"
 	}
 }
-// setup each platform-specific lib
+
+// setup the platform-specific fragments
 configure(subprojects.findAll {it.name.startsWith('org.eclipse.swt.chromium.')} ) {
 	apply from: rootProject.file('gradle/libSetup.gradle')
 
 	// add the SWT dependencies
-	String platformCode = project.name.substring('org.eclipse.swt.chromium.'.length())
+	SwtPlatform platform = SwtPlatform.parseWsOsArch(project.name.substring('org.eclipse.swt.chromium.'.length()))
 	dependencies {
 		provided "p2swt:org.eclipse.swt:+"
-		provided "p2swt:org.eclipse.swt.${platformCode}:+"
+		provided "p2swt:org.eclipse.swt.${platform}:+"
 	}
 
-	// platform-specific libs should be fragments
-	SwtPlatform parsedPlatform = SwtPlatform.parseWsOsArch(platformCode)
+	// platform-specific libs should be OSGi fragments
 	jar.manifest.attributes (
 		'Fragment-Host': 'org.eclipse.swt.chromium',
-		'Eclipse-PlatformFilter': parsedPlatform.platformFilter(),
+		'Eclipse-PlatformFilter': platform.platformFilter(),
 	)
+
+	// download and extract the CEF binaries
+	if (activePlatforms.contains(platform)) {
+		buildhelper.CEF.downloadTask(project, platform, 'cef')
+	}
 }
 
 // setup the root eclipse project
