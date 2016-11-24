@@ -1,10 +1,15 @@
-# swt-chromium
+# <img align="left" src="_images/logo_90.png"> swt-chromium: Chromium embed for SWT
 
-- CEF3 is the embedding API to Chromium, and is used by Electron.  It sees new releases every 2 months, but is relatively stable.
-- CEF3 is *also* the embedding API to the upcoming [Servo browser from Firefox](https://github.com/servo/servo/tree/master/ports/cef)
+swt-chromium embeds the latest version of Chromium into the latest version of SWT.  This allows JVM applications to achieve graphical parity with Electron applications.
 
-Electron has shown the development velocity you can have with a guaranteed browser implementation.  SWT could have this too, but we would need to move to CEF3 and ship the browser binaries, perhaps through a fragment like `swt-chromium.win32.win32.x86_64`, etc.
+It isn't yet ready for users, but you can help!  See [CONTRIBUTING](CONTRIBUTING.md) for info on how to get the dev environment setup.
 
-The SWT team is currently too busy to take this on, so this repository is an attempt to coordinate the effort and host the binaries in an easy-to-consume way.
+It is based on CEF3, which is used by both Chromium and the upcoming [Servo browser from Firefox](https://github.com/servo/servo/tree/master/ports/cef).
 
-For now, the action is all in [the issues section](https://github.com/diffplug/swt-chromium/issues).
+## Acknowledgements
+
+- Huge thanks to the Chromium team.
+- Huge thanks to GitHub and the Electron team for showing the way.
+- Thanks to Patrick Chuong of Texas Instruments for the initial code contribution for this project.
+- Thanks to Jingyi Wei for leading the way with [javacef](https://github.com/wjywbs/javacef).
+- Maintained by [DiffPlug](https://www.diffplug.com/).
