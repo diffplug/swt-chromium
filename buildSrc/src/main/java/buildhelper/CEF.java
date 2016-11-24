@@ -6,13 +6,11 @@ import java.util.Set;
 
 import org.gradle.api.Nullable;
 import org.gradle.api.Project;
-import org.gradle.api.tasks.Sync;
+import org.gradle.api.Task;
+import org.gradle.api.tasks.Delete;
 
-import com.diffplug.common.base.Errors;
 import com.diffplug.common.swt.os.OS;
 import com.diffplug.common.swt.os.SwtPlatform;
-
-import de.undercouch.gradle.tasks.download.Download;
 
 /** Miscellany for downloading and extracting the CEF. */
 public class CEF {
@@ -31,6 +29,7 @@ public class CEF {
 			for (String platform : platforms.split(",")) {
 				result.add(SwtPlatform.parseWsOsArch(platform));
 			}
+			
 		}
 		return result;
 	}
@@ -58,26 +57,17 @@ public class CEF {
 	}
 
 	/** Returns a task which will download and extract the CEF binaries for the given platform into the given folder. */
-	public static Sync downloadTask(Project project, SwtPlatform platform, Object destFolder) {
+	public static Task downloadTask(Project project, SwtPlatform platform, Object destFolder) {
 		String cefVersion = prop(project, "VER_CEF");
 		boolean isMinimal = Boolean.parseBoolean(prop(project, "CEF_MINIMAL"));
+		File folder = project.file(destFolder);
 
-		File downloadFolder = project.file(destFolder);
-		File downloadFile = new File(downloadFolder, "download.tar.bz2");
-		File extracted = new File(downloadFolder, "extracted");
+		project.getTasks().create("cleanCEF", Delete.class, task -> {
+			task.delete(folder);
+		});
 
-		Download download = project.getTasks().create("downloadCEF", Download.class, task -> {
-			Errors.rethrow().run(() -> {
-				task.src(cefUrl(cefVersion, platform, isMinimal));
-				task.dest(downloadFile);
-				task.onlyIfNewer(true);
-			});
+		return project.getTasks().create("downloadCEF", DownloadAndExtract.class, task -> {
+			task.setup(cefUrl(cefVersion, platform, isMinimal), folder);
 		});
-		Sync extract = project.getTasks().create("extractCEF", Sync.class, task -> {
-			task.from(project.tarTree(project.getResources().bzip2(downloadFile)));
-			task.into(extracted);
-		});
-		extract.dependsOn(download);
-		return extract;
 	}
 }

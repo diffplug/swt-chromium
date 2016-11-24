@@ -9,7 +9,8 @@ apply plugin: 'eclipse'
 
 dependencies {
 	compile "com.diffplug.gradle:goomph:${VER_GOOMPH}"
-	compile "de.undercouch:gradle-download-task:${VER_DOWNLOAD}"
+	compile "org.apache.httpcomponents:httpclient:${VER_HTTPCLIENT}"
+	compile "org.apache.commons:commons-compress:1.0"
 	testCompile "junit:junit:${VER_JUNIT}"
 	testCompile "org.assertj:assertj-core:${VER_ASSERTJ}"
 }
