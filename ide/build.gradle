@@ -21,9 +21,12 @@ oomphIde {
 	repo 'http://download.eclipse.org/tools/cdt/releases/9.1'
 	feature 'org.eclipse.cdt.platform'
 
-	// add syntax highlighting for gradle scripts
-	repo 'http://www.nodeclipse.org/updates/gradle-ide-pack/'
-	feature 'org.nodeclipse.enide.editors.gradle.feature'
+	thirdParty {
+		// syntax highlighting for gradle scripts
+		minimalistGradleEditor {}
+		// terminal for running gradle commands
+		tmTerminal {}
+	}
 
 	// add these projects
 	addAllProjects()
