@@ -1,15 +1,6 @@
 # <img align="left" src="_images/logo_90.png"> swt-chromium: Chromium embed for SWT
 
-swt-chromium embeds the latest version of Chromium into the latest version of SWT.  This allows JVM applications to achieve graphical parity with Electron applications.
+This project is dead, because [cefswt](https://github.com/maketechnology/cefswt) is so much better!  Latest Chromium embed for SWT on win/mac/linux under the EPL license, working demos already available.
 
-It isn't yet ready for users, but you can help!  See [CONTRIBUTING](CONTRIBUTING.md) for info on how to get the dev environment setup.
+Please consider donating financially to their project through the Eclipse Foundation to ensure it gets a full SWT Browser API, including javascript interaction.  More details [here](https://github.com/diffplug/swt-chromium/issues/10).
 
-It is based on CEF3, which is used by both Chromium and the upcoming [Servo browser from Firefox](https://github.com/servo/servo/tree/master/ports/cef).
-
-## Acknowledgements
-
-- Huge thanks to the Chromium team.
-- Huge thanks to GitHub and the Electron team for showing the way.
-- Thanks to Patrick Chuong of Texas Instruments for the initial code contribution for this project.
-- Thanks to Jingyi Wei for leading the way with [javacef](https://github.com/wjywbs/javacef).
-- Maintained by [DiffPlug](https://www.diffplug.com/).
